@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
-import inject from '@rollup/plugin-inject'
 
 export default defineConfig({
-  base: '/Portfolio-Divyanshu/',
   plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
@@ -20,12 +18,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['globalThis'],
-      plugins: [
-        inject({
-          global: 'globalThis',
-        })
-      ]
+      // ✅ completely remove `external` and `inject`
     }
   }
 })
