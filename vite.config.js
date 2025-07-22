@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 
 export default defineConfig({
+  base: '/Portfolio-Divyanshu/', // ✅ important for GitHub Pages subdirectory
   plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
@@ -11,14 +12,14 @@ export default defineConfig({
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
-          buffer: true
-        })
-      ]
-    }
+          buffer: true,
+        }),
+      ],
+    },
   },
   build: {
     rollupOptions: {
-      // ✅ completely remove `external` and `inject`
-    }
-  }
+      // ✅ completely remove 'external' or 'inject'
+    },
+  },
 })
