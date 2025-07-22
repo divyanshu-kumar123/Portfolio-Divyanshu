@@ -1,6 +1,7 @@
-import { webcrypto } from 'crypto';
+import crypto from 'crypto';
+
 if (!globalThis.crypto) {
-  globalThis.crypto = webcrypto;
+  globalThis.crypto = crypto.webcrypto || crypto;
 }
 
 import { StrictMode } from 'react'

@@ -20,17 +20,12 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
+      external: ['globalThis'],
       plugins: [
         inject({
           global: 'globalThis',
-          crypto: ['crypto', 'webcrypto']
         })
-      ],
-      output: {
-        globals: {
-          crypto: 'crypto'
-        }
-      }
+      ]
     }
   }
 })
