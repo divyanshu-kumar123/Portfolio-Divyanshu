@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Alert } from 'react-bootstrap';
 import { BsEnvelope, BsPhone, BsGeoAlt, BsLinkedin, BsGithub } from 'react-icons/bs';
 import PearlBtn from './PearlBtn';
+import emailjs from 'emailjs-com'; 
 import './Contact.css';
 
 const Contact = () => {
@@ -46,42 +47,49 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
 
-    // Simulate form submission
-    try {
-      // Log the form data to console as requested
-      console.log('Contact Form Submission:', {
-        timestamp: new Date().toISOString(),
-        formData: formData
-      });
 
-      // Show success message
-      setAlertMessage('Thank you for your message! I will get back to you soon.');
-      setShowAlert(true);
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-      // Hide alert after 5 seconds
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 5000);
+  try {
+    const result = await emailjs.send(
+      'service_jt95tjq', // ✅ Your Service ID
+      'template_s00hhwv', // ✅ Your Template ID
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      'aptkaiQ76kzTeKPqJ' // ✅ Your Public Key (API key)
+    );
 
-    } catch (error) {
-      setAlertMessage('Something went wrong. Please try again.');
-      setShowAlert(true);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    console.log('Email successfully sent!', result.status, result.text);
+
+    setAlertMessage('Thank you for your message! I will get back to you soon.');
+    setShowAlert(true);
+
+    // Reset form fields
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
+
+    // Hide alert after 5 seconds
+    setTimeout(() => setShowAlert(false), 5000);
+
+  } catch (error) {
+    console.error('Email sending failed:', error);
+    setAlertMessage('Something went wrong. Please try again.');
+    setShowAlert(true);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const contactInfo = [
     {
