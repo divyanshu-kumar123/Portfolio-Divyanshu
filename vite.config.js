@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
+import { inject } from '@rollup/plugin-inject'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -19,6 +20,12 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
+      plugins: [
+        inject({
+          global: 'globalThis',
+          crypto: ['crypto', 'webcrypto']
+        })
+      ],
       output: {
         globals: {
           crypto: 'crypto'
