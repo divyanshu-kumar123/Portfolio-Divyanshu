@@ -18,8 +18,14 @@ jobs:
       with:
         node-version: 16
 
+    - name: Clear npm cache
+      run: npm cache clean --force
+
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Ensure Node.js compatibility
+      run: node -v
 
     - name: Build project
       run: npm run build
