@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 import inject from '@rollup/plugin-inject'
 
-// https://vite.dev/config/
 export default defineConfig({
+  base: '/Portfolio-Divyanshu/', // ⬅️ REQUIRED for GitHub Pages
   plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
@@ -13,10 +13,10 @@ export default defineConfig({
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
-          buffer: true
-        })
-      ]
-    }
+          buffer: true,
+        }),
+      ],
+    },
   },
   build: {
     rollupOptions: {
@@ -24,8 +24,8 @@ export default defineConfig({
       plugins: [
         inject({
           global: 'globalThis',
-        })
-      ]
-    }
-  }
+        }),
+      ],
+    },
+  },
 })
