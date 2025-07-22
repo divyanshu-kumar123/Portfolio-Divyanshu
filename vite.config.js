@@ -4,7 +4,7 @@ import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfil
 import inject from '@rollup/plugin-inject'
 
 export default defineConfig({
-  base: '/Portfolio-Divyanshu/', // ⬅️ REQUIRED for GitHub Pages
+  base: '/Portfolio-Divyanshu/',
   plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
@@ -13,10 +13,10 @@ export default defineConfig({
       },
       plugins: [
         NodeGlobalsPolyfillPlugin({
-          buffer: true,
-        }),
-      ],
-    },
+          buffer: true
+        })
+      ]
+    }
   },
   build: {
     rollupOptions: {
@@ -24,8 +24,8 @@ export default defineConfig({
       plugins: [
         inject({
           global: 'globalThis',
-        }),
-      ],
-    },
-  },
+        })
+      ]
+    }
+  }
 })
