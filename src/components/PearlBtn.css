@@ -1,0 +1,353 @@
+.pearl-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--gradient-cyber);
+  box-shadow: 
+    0 4px 15px rgba(0, 212, 255, 0.3),
+    0 0 20px rgba(255, 0, 128, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transform: perspective(1000px) rotateX(0deg);
+}
+
+.pearl-btn::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-cyber);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity var(--transition-normal);
+}
+
+.pearl-btn__content {
+  position: relative;
+  z-index: 2;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.pearl-btn__shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  transition: transform var(--transition-slow);
+  z-index: 1;
+}
+
+/* Cyber data streams */
+.pearl-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 8px,
+      rgba(0, 245, 255, 0.1) 8px,
+      rgba(0, 245, 255, 0.1) 9px
+    );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: 1;
+}
+
+/* Variants */
+.pearl-btn--primary {
+  background: var(--gradient-cyber);
+  color: var(--text-primary);
+}
+
+.pearl-btn--secondary {
+  background: var(--gradient-purple);
+  color: var(--text-primary);
+  box-shadow: 
+    0 4px 15px rgba(168, 85, 247, 0.3),
+    0 0 20px rgba(168, 85, 247, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.pearl-btn--outline {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  box-shadow: 
+    0 0 20px rgba(0, 245, 255, 0.3),
+    inset 0 0 20px rgba(0, 245, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.pearl-btn--ghost {
+  background: rgba(0, 245, 255, 0.1);
+  color: var(--neon-blue);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 245, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Sizes */
+.pearl-btn--small {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  min-height: 32px;
+}
+
+.pearl-btn--medium {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-base);
+  min-height: 40px;
+}
+
+.pearl-btn--large {
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+}
+
+/* Hover Effects */
+.pearl-btn:hover {
+  transform: perspective(1000px) rotateX(-5deg) translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 212, 255, 0.4),
+    0 0 40px rgba(255, 0, 128, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pearl-btn:hover::before {
+  opacity: 1;
+}
+
+.pearl-btn:hover::after {
+  opacity: 1;
+  animation: dataFlow 1s linear infinite;
+}
+
+@keyframes dataFlow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
+  }
+}
+
+.pearl-btn:hover .pearl-btn__shine {
+  transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+.pearl-btn:hover .pearl-btn__content {
+  text-shadow: 
+    0 0 15px rgba(255, 255, 255, 0.8),
+    0 0 30px var(--neon-blue);
+}
+
+.pearl-btn--outline:hover {
+  background: var(--neon-blue);
+  color: var(--background-color);
+  border-color: var(--neon-blue);
+  transform: perspective(1000px) rotateX(-5deg) translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 245, 255, 0.5),
+    0 0 60px rgba(0, 245, 255, 0.4);
+}
+
+.pearl-btn--ghost:hover {
+  background: rgba(0, 245, 255, 0.2);
+  border-color: var(--neon-blue);
+  transform: perspective(1000px) rotateX(-5deg) translateY(-3px);
+  box-shadow: 
+    0 12px 40px rgba(0, 245, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Active State */
+.pearl-btn:active {
+  transform: perspective(1000px) rotateX(0deg) translateY(0px);
+  box-shadow: 
+    0 4px 15px rgba(0, 212, 255, 0.3),
+    0 0 20px rgba(255, 0, 128, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Disabled State */
+.pearl-btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: 
+    0 2px 5px rgba(0, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pearl-btn--disabled:hover {
+  transform: none;
+  box-shadow: 
+    0 2px 5px rgba(0, 212, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.pearl-btn--disabled::before,
+.pearl-btn--disabled::after {
+  display: none;
+}
+
+.pearl-btn--disabled .pearl-btn__shine {
+  display: none;
+}
+
+/* Focus State */
+.pearl-btn:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(0, 245, 255, 0.4),
+    0 12px 40px rgba(0, 212, 255, 0.4),
+    0 0 40px rgba(255, 0, 128, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: focusPulse 1s ease-in-out infinite;
+}
+
+@keyframes focusPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 3px rgba(0, 245, 255, 0.4),
+      0 12px 40px rgba(0, 212, 255, 0.4),
+      0 0 40px rgba(255, 0, 128, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 6px rgba(0, 245, 255, 0.6),
+      0 12px 40px rgba(0, 212, 255, 0.6),
+      0 0 60px rgba(255, 0, 128, 0.5);
+  }
+}
+
+/* Loading State */
+.pearl-btn--loading {
+  pointer-events: none;
+}
+
+.pearl-btn--loading .pearl-btn__content {
+  opacity: 0;
+}
+
+.pearl-btn--loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--neon-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Glitch effect for special occasions */
+.pearl-btn--glitch:hover {
+  animation: buttonGlitch 0.3s ease-in-out;
+}
+
+@keyframes buttonGlitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+/* Hologram effect */
+.pearl-btn--hologram {
+  animation: hologramShift 4s ease-in-out infinite;
+}
+
+@keyframes hologramShift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  33% {
+    filter: hue-rotate(120deg);
+  }
+  66% {
+    filter: hue-rotate(240deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .pearl-btn--large {
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: var(--font-size-base);
+    min-height: 48px;
+  }
+  
+  .pearl-btn--medium {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    min-height: 40px;
+  }
+  
+  .pearl-btn:hover {
+    transform: perspective(1000px) rotateX(-3deg) translateY(-2px);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .pearl-btn,
+  .pearl-btn::before,
+  .pearl-btn::after,
+  .pearl-btn__shine {
+    animation: none;
+    transition: none;
+  }
+  
+  .pearl-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .pearl-btn:active {
+    transform: translateY(0);
+  }
+}
