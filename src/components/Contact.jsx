@@ -120,7 +120,7 @@ const handleSubmit = async (e) => {
       icon: BsGithub,
       label: 'GitHub',
       value: 'github.com/divyanshu-kumar123',
-      link: 'https://github.com/divyanshu-kumar123    r'
+      link: 'https://github.com/divyanshu-kumar123'
     }
   ];
 
