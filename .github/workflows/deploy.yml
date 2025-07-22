@@ -13,16 +13,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Upgrade Node.js version
       uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 18
+
+    - name: Debug environment
+      run: |
+        echo "Node.js version: $(node -v)"
+        echo "NPM version: $(npm -v)"
+        echo "Installed dependencies:"
+        npm list
 
     - name: Clear npm cache
       run: npm cache clean --force
 
     - name: Install dependencies
-      run: npm ci
+      run: npm install
 
     - name: Ensure Node.js compatibility
       run: node -v
