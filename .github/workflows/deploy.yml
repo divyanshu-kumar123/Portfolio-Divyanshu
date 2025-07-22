@@ -29,7 +29,7 @@ jobs:
       run: npm cache clean --force
 
     - name: Install dependencies
-      run: npm ci
+      run: npm install
 
     - name: Ensure Node.js compatibility
       run: node -v
